@@ -4,6 +4,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DrawerStyle from '../styles/DrawerStyle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TemplateDefaultContext from '../stores/TemplateDefault.context';
+import Link from 'next/link';
 
 const NavigatorDefault: React.FC = (props) => {
 
@@ -31,10 +32,12 @@ const NavigatorDefault: React.FC = (props) => {
     </Toolbar>
     <Divider />
     <List component="nav">
-      {getListMenuItems().map(item => <ListItemButton>
-        <ListItemIcon>{item.icon}</ListItemIcon>
-        <ListItemText primary={item.title} />
-      </ListItemButton>)}
+      {getListMenuItems().map((item, index) => <Link key={index} href={item.url}>
+        <ListItemButton>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.title} />
+        </ListItemButton>
+      </Link>)}
       <Divider sx={{ my: 1 }} />
       {/* {secondaryListItems} */}
     </List>

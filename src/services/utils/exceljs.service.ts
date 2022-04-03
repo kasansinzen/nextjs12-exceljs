@@ -1,3 +1,4 @@
+import { GridColDef } from "@mui/x-data-grid";
 import ExcelJS from "exceljs";
 import { saveAs } from 'file-saver';
 
@@ -9,7 +10,23 @@ interface IOptionExport {
 }
 
 export const ExceljsService = new class ExceljsService {
+  typeElsx = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+  
   constructor() { }
+
+  setTextToKey(text: string) {
+    return String(text).replace(" ", "");
+  }
+
+  setRowByColumn(columns: any[], item: any[], key: number) {
+    let newObj: {[key: string]: any} = {};
+    columns.forEach((column, index) => {
+      newObj['id'] = `${key}`;
+      newObj[this.setTextToKey(column)] = item[index]
+    });
+    
+    return newObj
+  }
 
   async exportExcel(option: IOptionExport) {
     // const {userInfo} = AuthService.getAuthData();
