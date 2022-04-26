@@ -4,7 +4,8 @@ import { saveAs } from 'file-saver';
 
 interface IOptionExport {
   re_columns: Partial<ExcelJS.Column>[];
-  rows: any[], filename: string;
+  rows: any[],
+  filename: string;
   fix_header?: string | number;
   fix_cells_numeric?: string[];
 }
@@ -22,10 +23,9 @@ export const ExceljsService = new class ExceljsService {
     let newObj: {[key: string]: any} = {};
     columns.forEach((column, index) => {
       newObj['id'] = `${key}`;
-      newObj[this.setTextToKey(column)] = item[index]
+      newObj[this.setTextToKey(column)] = item;
     });
-    
-    return newObj
+    return newObj;
   }
 
   async exportExcel(option: IOptionExport) {

@@ -13,7 +13,8 @@ const NavigatorDefault: React.FC = (props) => {
 
   const getListMenuItems = (): {url: string, title: string, icon: any}[] => {
     return [
-      {title: "Read Excel", url: "/read-excel", icon: <DashboardIcon />}
+      {title: "Read Excel", url: "/read-excel", icon: <DashboardIcon />},
+      {title: "Export Excel", url: "/export-excel", icon: <DashboardIcon />},
     ];
   }
 
